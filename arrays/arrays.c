@@ -163,11 +163,12 @@ void arr_remove(Array *arr, char *element)
 			// Don't forget to free its memory!	
 			free(arr->elements[i]);
 			// Shift over every element after the removed element to the left one position
-			for (int j = i; j<arr->count; j++){
+			for (int j = i; j<arr->count-1; j++){
 				arr->elements[j] = arr->elements[j+1];
 			}
 			// Decrement count by 1
 			arr->count--;
+			arr->elements[arr->count] = NULL;
 			break;
 		}
 	}
