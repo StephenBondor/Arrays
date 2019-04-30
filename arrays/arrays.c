@@ -3,37 +3,6 @@
 #include <string.h>
 #include <errno.h>
 
-// int main(void)
-// {
-//     int a[10];
-//     int *b = malloc(10 * sizeof(int));
-
-//     char *c[10];
-//     char **d = malloc(10 * sizeof(char *));
-
-//     for (int i = 0; i < 10; i++) {
-//         d[i] = NULL;
-//     }
-
-//     char *some_str = "Lambda!";
-
-//     d[5] = malloc(strlen(some_str) + 1);
-
-//     strcpy(d[5], some_str);
-
-//     printf("d[5] contains \"%s\"\n", d[5]);
-
-//     for (int i = 0; i < 10; i++) {
-//         free(d[i]);
-//     }
-
-//     free(d);
-
-//     (void)a; (void)b; (void)c;
-
-//     return 0;
-// }
-
 typedef struct Array
 {
 	int capacity;	// How many elements can this array hold?
@@ -183,13 +152,21 @@ void arr_append(Array *arr, char *element)
  *****/
 void arr_remove(Array *arr, char *element)
 {
-
-	// Search for the first occurence of the element and remove it.
-	// Don't forget to free its memory!
-
-	// Shift over every element after the removed element to the left one position
-
-	// Decrement count by 1
+	// Search for the first occurrence of the element and remove it.
+	for (int i = 0; i<count; i++){
+		if (strcmp(arr->element[i], element) == 0)
+		{
+			// Don't forget to free its memory!	
+			free(arr->element[i]);
+			// Shift over every element after the removed element to the left one position
+			for (int j = i; j>arr->count; j++){
+				arr->elements[j] = arr->elements[j+1];
+			}
+			// Decrement count by 1
+			arr->count--;
+			break;
+		}
+	}
 }
 
 /*****
