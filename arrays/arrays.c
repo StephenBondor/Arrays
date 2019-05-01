@@ -50,7 +50,7 @@ void destroy_array(Array *arr)
 	free(arr);
 }
 
-/*****
+/***** 
  * Create a new elements array with double capacity and copy elements
  * from old to new
  *****/
@@ -109,8 +109,8 @@ void arr_insert(Array *arr, char *element, int index)
 	if (index > arr->count)
 	{
 		printf("ERROR: ya tried to add to a spot outside the array :tears-of-joy: what a GOOF");
-	} 
-	else 
+	}
+	else
 	{
 		// Resize the array if the number of elements is over capacity
 		if (arr->capacity == arr->count)
@@ -118,8 +118,9 @@ void arr_insert(Array *arr, char *element, int index)
 			resize_array(arr);
 		}
 		// Move every element after the insert index to the right one position
-		for (int i = arr->count; i>index; i--){
-			arr->elements[i] = arr->elements[i-1];
+		for (int i = arr->count; i > index; i--)
+		{
+			arr->elements[i] = arr->elements[i - 1];
 		}
 		// Copy the element and add it to the array
 		arr->elements[index] = strdup(element);
@@ -157,14 +158,16 @@ void arr_append(Array *arr, char *element)
 void arr_remove(Array *arr, char *element)
 {
 	// Search for the first occurrence of the element and remove it.
-	for (int i = 0; i<arr->count; i++){
+	for (int i = 0; i < arr->count; i++)
+	{
 		if (strcmp(arr->elements[i], element) == 0)
 		{
-			// Don't forget to free its memory!	
+			// Don't forget to free its memory!
 			free(arr->elements[i]);
 			// Shift over every element after the removed element to the left one position
-			for (int j = i; j<arr->count-1; j++){
-				arr->elements[j] = arr->elements[j+1];
+			for (int j = i; j < arr->count - 1; j++)
+			{
+				arr->elements[j] = arr->elements[j + 1];
 			}
 			// Decrement count by 1
 			arr->count--;
